@@ -1,0 +1,13 @@
+crewai
+crewai-tools
+openai
+langchain
+langchain-chroma
+langchain-huggingface
+chromadb
+sentence-transformers
+tavily-python
+python-dotenv
+pydantic
+PyYAML
+tqdm
