@@ -1,17 +1,79 @@
-research_task:
+case_intake_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Analyze the user's case description and structure it into a standardized case brief.
+    Extract and organize the following information:
+    1. Parties Involved (complainant, accused, witnesses)
+    2. Key Facts of the case in chronological order
+    3. Jurisdiction (location, applicable court)
+    4. Timeline of events with specific dates
+    5. Type of offense (criminal, civil aspects if any)
+    6. Evidence mentioned
+    7. Relief sought by the complainant
+    
+    Case Description: {case_description}
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    A structured case brief in JSON format containing all extracted information
+    organized under clear headings with complete details for legal analysis.
+  agent: case_intake_agent
 
-reporting_task:
+ipc_identification_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Based on the structured case brief, identify all relevant IPC sections that apply.
+    Search for:
+    1. Primary offenses directly mentioned in the case
+    2. Related or ancillary sections that might apply
+    3. Aggravating or mitigating sections
+    4. Procedural sections if relevant
+    
+    Provide section numbers with their titles and brief explanations of applicability.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A comprehensive list of applicable IPC sections with:
+    - Section number and title
+    - Full text of the section
+    - Explanation of how it applies to this specific case
+    - Severity/punishment details
+  agent: ipc_section_agent
+  context:
+    - case_intake_task
+
+legal_draft_task:
+  description: >
+    Draft a legal document based on the case brief and applicable IPC sections.
+    Document type to draft: {document_type}
+    
+    The document should include:
+    1. Proper legal formatting and headers
+    2. Clear statement of facts
+    3. Citation of relevant IPC sections
+    4. Legal arguments/grounds
+    5. Prayer/relief sought
+    6. Proper legal language and terminology
+  expected_output: >
+    A complete, professionally formatted legal document ready for filing,
+    including all necessary sections, proper citations, and formal legal language.
+  agent: legal_drafter_agent
+  context:
+    - case_intake_task
+    - ipc_identification_task
+
+precedent_research_task:
+  description: >
+    Research and compile relevant legal precedents for the case.
+    Find:
+    1. Supreme Court judgments on similar cases
+    2. High Court rulings that apply
+    3. Landmark cases that set relevant principles
+    4. Recent judgments that might impact interpretation
+    
+    Focus on precedents related to the identified IPC sections and case facts.
+  expected_output: >
+    A detailed precedent report containing:
+    - Case citations (name, year, court)
+    - Brief facts of the precedent case
+    - Relevant legal principles established
+    - How the precedent applies to current case
+    - Strength of the precedent (binding/persuasive)
+  agent: legal_precedent_agent
+  context:
+    - case_intake_task
+    - ipc_identification_task
