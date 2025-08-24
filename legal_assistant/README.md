@@ -1,54 +1,98 @@
-# LegalAssistant Crew
+# ⚖️ Legal Assistant – Multi-Agent CrewAI System  
 
-Welcome to the LegalAssistant Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+## 📌 Introduction  
+The **Legal Assistant** is a multi-agent system built with **CrewAI** that helps automate repetitive and time-consuming legal tasks.  
+It is designed to assist **lawyers, students, and citizens** by structuring case information, identifying applicable IPC sections, drafting legal documents, and retrieving relevant precedents.  
 
-## Installation
+The system leverages:  
+- **Specialized AI Agents** for modular responsibilities.  
+- **Custom Search Tools** for IPC sections and legal precedents.  
+- **Vector Databases (ChromaDB)** for semantic search and retrieval.  
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+By combining these components, the assistant reduces research time, increases accuracy, and makes legal knowledge more accessible.  
 
-First, if you haven't already, install uv:
+---
 
-```bash
-pip install uv
-```
+## 🤔 Why is this necessary?  
+Legal research and drafting often involve navigating thousands of IPC sections and judgments, which is both **time-intensive** and **prone to human error**.  
 
-Next, navigate to your project directory and install the dependencies:
+This system provides a **structured and automated workflow** that enables:  
+- Faster case preparation.  
+- More accurate identification of applicable laws.  
+- Simplified access to precedent-based reasoning.  
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
+Ultimately, it **democratizes legal knowledge** and improves efficiency for professionals and students alike.  
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+---
 
-- Modify `src/legal_assistant/config/agents.yaml` to define your agents
-- Modify `src/legal_assistant/config/tasks.yaml` to define your tasks
-- Modify `src/legal_assistant/crew.py` to add your own logic, tools and specific args
-- Modify `src/legal_assistant/main.py` to add custom inputs for your agents and tasks
+## 🔗 Key Agents  
+1. **Case Intake Agent**  
+   - Structures unorganized user input into a standardized case brief.  
 
-## Running the Project
+2. **IPC Section Agent**  
+   - Finds relevant IPC sections using ChromaDB vector search.  
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+3. **Legal Drafter Agent**  
+   - Generates drafts for petitions, FIRs, and notices.  
 
-```bash
-$ crewai run
-```
+4. **Legal Precedent Agent**  
+   - Retrieves and summarizes precedents supporting the case.  
 
-This command initializes the legal_assistant Crew, assembling the agents and assigning them tasks as defined in your configuration.
+---
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+## ⚙️ Custom Tools  
+- **IPC Research Search Tool** → Vectorized `ipc.json` stored in ChromaDB for semantic retrieval.  
+- **Legal Precedent Search Tool** → Retrieves judgments and summarizes their relevance.  
 
-## Understanding Your Crew
+---
 
-The legal_assistant Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+## 📚 Example Use Cases  
+### 👨‍⚖️ For Lawyers  
+- Automate IPC section lookup.  
+- Draft legal documents (petitions, FIRs, notices).  
+- Retrieve and summarize supporting precedents.  
 
-## Support
+### 🎓 For Law Students  
+- Input hypothetical scenarios and instantly see applicable IPC sections.  
+- Generate structured case briefs for study/moot court.  
+- Learn from precedent summaries without sifting through volumes of judgments.  
 
-For support, questions, or feedback regarding the LegalAssistant Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+### 🧑‍💼 For Citizens  
+- Describe a real-life issue and get simplified explanations of applicable IPC laws.  
+- Receive a draft of an FIR or complaint.  
+- Understand past judgments to know their rights and protections.  
 
-Let's create wonders together with the power and simplicity of crewAI.
+---
+
+## 🚀 Workflow Overview  
+1. **User provides a case description.**  
+2. **Case Intake Agent** → Converts it into a structured case brief.  
+3. **IPC Section Agent** → Queries IPC sections from ChromaDB.  
+4. **Legal Drafter Agent** → Prepares draft petitions/complaints.  
+5. **Legal Precedent Agent** → Fetches relevant precedents.  
+6. **Final consolidated output** → Presented to the user.  
+
+---
+
+## 🛠️ Tech Stack  
+- **CrewAI** – Multi-agent orchestration.  
+- **ChromaDB** – Vector database for semantic IPC search.  
+- **LangChain / LLMs** – Legal text processing and reasoning.  
+- **Python** – Core implementation language.  
+
+---
+
+## 📂 Documentation Roadmap  
+The repository will also contain a `docs/` folder with detailed documentation:  
+- `docs/overview.md` → Vision + Use Cases  
+- `docs/agents.md` → Agents & Task Descriptions  
+- `docs/tools.md` → Custom Search Tools + ChromaDB Setup  
+- `docs/workflow.md` → System Workflow & Architecture  
+
+---
+
+## 📜 Disclaimer  
+This project is intended for **educational and research purposes** only.  
+It should not be used as a substitute for professional legal advice.  
+
+---
